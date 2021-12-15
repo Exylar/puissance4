@@ -12,9 +12,9 @@ public class Puissance {
             grille[i] = new int[] {0, 0, 0, 0, 0, 0, 0};
     }
 
-    // Paramètre <Joueur>, 1 = Joueur 1 & 2 = Joueur 2
-    // Paramètre <Colonne>, Valeur entre 0 et 6, correspond à la colonne ou le jeton va être inséré
-    // Description: On regarde ou le jeton peut être inséré au plus bas de la grille (au plus haut dans la matrice). 
+    // Paramètre <Joueur>, 1 = Joueur 1 & 2 = Joueur 2.
+    // Paramètre <Colonne>, Valeur entre 0 et 6, correspond à la colonne ou le jeton va être inséré.
+    // Description: On regarde où le jeton peut être inséré au plus bas de la grille (au plus haut dans la matrice). 
     public static void jouer(int joueur, int colonne) {
         for (int ligne = 0; ligne < 6; ligne++) {
             if (grille[ligne][colonne] == 0) {
@@ -29,7 +29,7 @@ public class Puissance {
     // Bonus: Couleur intégrée dans l'affichage avec:
     // Jaune: \u001B[33m
     // Blanc: \u001B[37m
-    // Rouge: \u001B[31mO
+    // Rouge: \u001B[31m
     public static void afficheGrille() {
         for (int ligne = 5; ligne >= 0; ligne--) {
             for (int colonne = 0; colonne < 7; colonne++) {
@@ -49,8 +49,9 @@ public class Puissance {
         System.out.println();
     }
 
-    // Description: En parant d'une coordonnée on va compter le nombre de case à droite et à gauche comportant un jeton du joueur courant
-    // On vérifie en amont que on ne sort pas de la matrice
+    // Description: En partant d'une coordonnée on va compter le nombre de case à droite et à gauche comportant un jeton du joueur courant. 
+    // On regarde en premier la direction de droite. Si on sort de la grille ou qu'un jeton n'est pas celui du joueur courant on arrête la boucle et on passe sur le côté gauche et on fait la même chose.
+    // On vérifie en amont que l'on ne sort pas de la matrice
     // Si la somme est égale à 4 cela signifie que 4 jetons sont alignés
     public static int aGagneHor(int joueur, int x, int y) {
         int countCase = 1;
@@ -70,8 +71,9 @@ public class Puissance {
         return (countCase >= 4) ? 1 : 0;
     }
 
-    // Description: En parant d'une coordonnée on va compter le nombre de case en haut et en bas comportant un jeton du joueur courant
-    // On vérifie en amont que on ne sort pas de la matrice
+    // Description: En partant d'une coordonnée on va compter le nombre de case en haut et en bas comportant un jeton du joueur courant. 
+    // On regarde en premier la direction de haut. Si on sort de la grille ou qu'un jeton n'est pas celui du joueur courant on arrête la boucle et on passe sur la direction bas et on fait la même chose.
+    // On vérifie en amont que l'on ne sort pas de la matrice
     // Si la somme est égale à 4 cela signifie que 4 jetons sont alignés
     public static int aGagneVer(int joueur, int x, int y) {
         int countCase = 1;
@@ -91,8 +93,9 @@ public class Puissance {
         return (countCase >= 4) ? 1 : 0;
     }
 
-    // Description: En parant d'une coordonnée on va compter le nombre de case en diagonale en haut à droite et diagonale en bas à gauche comportant un jeton du joueur courant
-    // On vérifie en amont que on ne sort pas de la matrice
+    // Description: En partant d'une coordonnée on va compter le nombre de case en diagonale en haut à droite et en diagonale en bas à gauche comportant un jeton du joueur courant. 
+    // On regarde en premier la diagonale haut droite. Si on sort de la grille ou qu'un jeton n'est pas celui du joueur courant on arrête la boucle et on passe sur la diagonale bas gauche et on fait la même chose.
+    // On vérifie en amont que l'on ne sort pas de la matrice
     // Si la somme est égale à 4 cela signifie que 4 jetons sont alignés
     public static int aGagneDiagMont(int joueur, int x, int y) {
         int countCase = 1;
@@ -112,8 +115,9 @@ public class Puissance {
         return (countCase >= 4) ? 1 : 0;
     }
 
-    // Description: En parant d'une coordonnée on va compter le nombre de case en diagonale en haut à gauche et diagonale en bas à droite comportant un jeton du joueur courant
-    // On vérifie en amont que on ne sort pas de la matrice
+    // Description: En partant d'une coordonnée on va compter le nombre de case en diagonale en haut à gauche et en diagonale en bas à droit comportant un jeton du joueur courant. 
+    // On regarde en premier la diagonale haut gaucge. Si on sort de la grille ou qu'un jeton n'est pas celui du joueur courant on arrête la boucle et on passe sur la diagonale bas droit et on fait la même chose.
+    // On vérifie en amont que l'on ne sort pas de la matrice
     // Si la somme est égale à 4 cela signifie que 4 jetons sont alignés
     public static int aGagneDiagDesc(int joueur, int x, int y) {
         int countCase = 1;
@@ -133,8 +137,8 @@ public class Puissance {
         return (countCase >= 4) ? 1 : 0;
     }
 
-    // Description: Vérifie à chaque coup joué si le joueur courant à gagné
-    // Vérifie également s'il n'y a pas une égalité
+    // Description: On vérifie à chaque coup joué si le joueur courant à gagné. Si oui on arrête le jeu et on affiche le message de victoire.
+    // Si le joueur courant n'a pas gagné. On regarde si le match est nul. 
     public static void aGagne(int joueur, int ligne, int colonne) {
         Boolean estGagne = false;
 
@@ -158,7 +162,7 @@ public class Puissance {
         }
     }
 
-    // Description: Vérifie si toute les cases sont utilisés, dans le cas ou on ne peut plus poser de jeton, le jeu s'arrète avec une égalité
+    // Description: On vérifie si toutes les cases sont utilieés, dans le cas où on ne peut plus poser de jeton, le jeu s'arrête avec une égalité
     public static Boolean matchNul() {
         Boolean estNul = true;
 
@@ -241,7 +245,7 @@ public class Puissance {
             clearScreen();
             spashScreen();
             afficheGrille();
-            Scanner sc= new Scanner(System.in);    //System.in is a standard input stream
+            Scanner sc= new Scanner(System.in);
             System.out.println(""); 
             System.out.print("Quel coup pour le joueur " + joueur + " ? : ");
             int caseSelect = 0;
@@ -268,7 +272,7 @@ public class Puissance {
             afficheGrille();
             // Joueur
             if (joueur == 1) {
-                Scanner sc= new Scanner(System.in);    //System.in is a standard input stream
+                Scanner sc= new Scanner(System.in);
                 System.out.println(""); 
                 System.out.print("Quel coup pour le joueur " + joueur + " ? : ");
                 int caseSelect = 0;
@@ -311,7 +315,7 @@ public class Puissance {
     public static void winScreen() {
         while (jeu == 2) {
             int caseSelectionne = 0;
-            Scanner sc= new Scanner(System.in);    //System.in is a standard input stream  
+            Scanner sc= new Scanner(System.in);
             System.out.print("Appuyez sur 0 pour retourner au Menu et sur un 1 pour recommancer: ");
             caseSelectionne = 0;
             
@@ -326,7 +330,7 @@ public class Puissance {
         }
     }
 
-    // Description: Ascii Text pour le rendre un peu plus jolie
+    // Description: Texte Ascii
     public static void spashScreen() {
         System.out.println("\u001B[33m  ___ _   _ ___ ___ ___   _   _  _  ___ ___   _ _  ");
         System.out.println(" | _ \\ | | |_ _/ __/ __| /_\\ | \\| |/ __| __| | | | ");
@@ -335,7 +339,7 @@ public class Puissance {
         System.out.println("");
     }
 
-    // Description Menu pour choisir le mode de jeu soit 1VS1 ou soit contre l'IA
+    // Description Menu pour choisir le mode de jeu soit 1VS1, soit jouer contre l'IA ou soit quitter le programme
     public static void menu() {
         while (jeu == 0) {
             clearScreen();
