@@ -34,9 +34,9 @@ public class Puissance {
         for (int ligne = 5; ligne >= 0; ligne--) {
             for (int colonne = 0; colonne < 7; colonne++) {
                 if (grille[ligne][colonne] == 1)
-                    System.out.print("|\u001B[33mX\u001B[37m");
+                    System.out.print("|X");
                 else if (grille[ligne][colonne] == 2)
-                    System.out.print("|\u001B[31mO\u001B[37m");
+                    System.out.print("|O");
                 else 
                     System.out.print("| ");
                 if (colonne == 6)
@@ -328,10 +328,10 @@ public class Puissance {
 
     // Description: Ascii Text pour le rendre un peu plus jolie
     public static void spashScreen() {
-        System.out.println("\u001B[33m  ___ _   _ ___ ___ ___   _   _  _  ___ ___   _ _  ");
+        System.out.println("  ___ _   _ ___ ___ ___   _   _  _  ___ ___   _ _  ");
         System.out.println(" | _ \\ | | |_ _/ __/ __| /_\\ | \\| |/ __| __| | | | ");
         System.out.println(" |  _/ |_| || |\\__ \\__ \\/ _ \\| .` | (__| _|  |_  _|");
-        System.out.println(" |_|  \\___/|___|___/___/_/ \\_\\_|\\_|\\___|___|   |_| \u001B[37m");
+        System.out.println(" |_|  \\___/|___|___/___/_/ \\_\\_|\\_|\\___|___|   |_|");
         System.out.println("");
     }
 
