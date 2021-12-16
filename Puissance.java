@@ -15,14 +15,18 @@ public class Puissance {
     // Paramètre <Joueur>, 1 = Joueur 1 & 2 = Joueur 2.
     // Paramètre <Colonne>, Valeur entre 0 et 6, correspond à la colonne ou le jeton va être inséré.
     // Description: On regarde où le jeton peut être inséré au plus bas de la grille (au plus haut dans la matrice). 
-    public static void jouer(int joueur, int colonne) {
+    public static int jouer(int joueur, int colonne) {
+        int aPlace = 0;
+
         for (int ligne = 0; ligne < 6; ligne++) {
             if (grille[ligne][colonne] == 0) {
                 grille[ligne][colonne] = joueur;
                 aGagne(joueur, ligne, colonne);
+                aPlace = 1;
                 break;
             }
         }
+        return aPlace;
     }
 
     // Description: Affichage de la grille inversé sur l'axe Y par rapport à la matrice
@@ -242,7 +246,6 @@ public class Puissance {
         initialiseGrille();
 
         while (jeu == 1) {
-            clearScreen();
             spashScreen();
             afficheGrille();
             Scanner sc= new Scanner(System.in);
@@ -252,8 +255,9 @@ public class Puissance {
 
             try {
                 caseSelect = sc.nextInt();
-                jouer(joueur, caseSelect);
-                joueur = (joueur == 1) ? 2 : 1;
+                int res = jouer(joueur, caseSelect);
+                if (res == 1)
+                    joueur = (joueur == 1) ? 2 : 1;
             } catch(Exception e) {
                 System.out.println("Erreur: Veuillez choisir un chiffre entre 0 et 6");
             }
@@ -279,8 +283,9 @@ public class Puissance {
 
                 try {
                     caseSelect = sc.nextInt();
-                    jouer(joueur, caseSelect);
-                    joueur = (joueur == 1) ? 2 : 1;
+                    int res = jouer(joueur, caseSelect);
+                    if (res == 1)
+                        joueur = (joueur == 1) ? 2 : 1;
                 } catch(Exception e) {
                     System.out.println("Erreur: Veuillez choisir un chiffre entre 0 et 6");
                 }
